@@ -5,6 +5,8 @@
 #pragma once
 #include"Reader.h"
 
+#define MS_GET_REPORT WM_USER + 1
+
 // Диалоговое окно MyDlg
 class MyDlg : public CDialogEx
 {
@@ -28,10 +30,13 @@ protected:
 	// Созданные функции схемы сообщений
 	virtual BOOL OnInitDialog();
 	afx_msg void OnPaint();
+	LRESULT MyDlg::OnGetReport(WPARAM wParam, LPARAM lParam);
 	afx_msg HCURSOR OnQueryDragIcon();
 	DECLARE_MESSAGE_MAP()
 public:
 	afx_msg void OnBnClickedOk();
-	CListBox LB;
 	Reader reader;
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
+	UINT_PTR timerid;
+	CListBox LB;
 };
